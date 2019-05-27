@@ -76,3 +76,26 @@ a package manager for the ruby programing language.
   Hello.new.send(:world) #=> 'world'
   {% endhighlight %}
 
+* ### ***Difference between class & module?***
+
+  Modules are collection of methods and constants. These can be used as mixins
+  to extend the functionality of a class. Modules cannot generate instances.
+
+  We can see that these methods are not available for a module.
+  {% highlight ruby %}
+  Class.new.methods - Module.new.methods #=> [:new, :allocate, :superclass]
+  {% endhighlight %}
+  Don't confuse `Module.new` here, as everything in ruby is an object. We are
+  simply creating a module using this.
+  This can be simply transformed as 
+  {% highlight ruby %}
+  class Hello
+  end
+
+  module World
+  end
+
+  Hello.methods - World.methods #=> [:new, :allocate, :superclass]
+
+  World.new #=> NoMethodError: undefined method `new' for World:Module
+  {% endhighlight %}
