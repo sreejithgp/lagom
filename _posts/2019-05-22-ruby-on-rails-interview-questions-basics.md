@@ -99,3 +99,29 @@ a package manager for the ruby programing language.
 
   World.new #=> NoMethodError: undefined method `new' for World:Module
   {% endhighlight %}
+
+* ### ***How to create getter and setter methods in Ruby?***
+
+  The easiest method would be to use the ruby helper `attr_accessor` which will
+  create both setter and getter methods.
+
+  If you want to create this manually then
+  {% highlight ruby %}
+  class Hello
+    # getter method
+    def world
+      @world
+    end
+
+    # setter method
+    def world=(value)
+      @world = value
+    end
+  end
+  obj = Hello.new
+  obj.world #=> nil
+  obj.world = 'world'
+  obj.world #=> 'world'
+  {% endhighlight %}
+
+
