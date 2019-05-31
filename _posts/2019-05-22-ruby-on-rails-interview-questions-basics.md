@@ -102,10 +102,12 @@ a package manager for the ruby programing language.
 
 * ### ***How to create getter and setter methods in Ruby?***
 
-  The easiest method would be to use the ruby helper `attr_accessor` which will
-  create both setter and getter methods.
+  The easiest way would be to use the ruby helper `attr_accessor` which will
+  create both setter and getter methods. `attr_reader` if you only want to
+  create getter method and `attr_writer` if you only want to create setter
+  method.
 
-  If you want to create this manually then
+  If you want to create them manually then
   {% highlight ruby %}
   class Hello
     # getter method
@@ -125,3 +127,22 @@ a package manager for the ruby programing language.
   {% endhighlight %}
 
 
+* ### ***Your top 10 ruby gems?***
+
+  This is a more generic question and the answer varies for each programmers.
+  But the trick is to include all testing and development gems that you might
+  end up using in every rails project.
+
+  * Testing gems
+    * capybara
+    * simplecov
+    * factorybot
+    * database_cleaner
+    * faker
+    * shoulda-matchers
+
+  * Development gems
+    * guard-rails
+    * rubycop
+    * bullet
+    * pry
