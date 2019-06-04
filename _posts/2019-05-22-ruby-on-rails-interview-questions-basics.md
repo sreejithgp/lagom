@@ -57,6 +57,80 @@ a package manager for the ruby programing language.
   More info [here](https://www.geeksforgeeks.org/ruby-data-types/)
 
 ---
+* ### ***Difference between blocks, procs and lambda?***
+
+  Blocks, procs and lambdas are all closures, but blocks are not objects in
+  ruby ( and hence the term *almost* everything in ruby is an object ). A method
+  can accept only one block, but can accept any number of procs. Also a method
+  can return procs but not blocks.
+
+  There is always a block in as the last argument when you define a method in ruby.
+
+  {% highlight ruby %}
+  def hello
+    puts 'world'
+  end
+
+  hello { puts 'there' }
+  # world
+  # => nil
+
+  # inorder to execute what's inside the block we need to yield.
+
+  def hello
+    puts 'world'
+    # block_given? guards when the method is called without a block
+    yield if block_given?
+  end
+
+  hello
+  # world
+  # => nil
+
+  hello { puts 'there' }
+  # world
+  # there
+  # => nil
+
+  {% endhighlight %}
+
+  Now the difference between procs and lambdas are on how they handle the
+  arguments and their return statements.
+
+  Procs don't strict enforce the arguments you pass in.
+
+  {% highlight ruby %}
+  a = lambda { |name| "Greetings #{name}!!" }
+  a.call('Mark') #=> "Greetings Mark!!"
+  a.call #=> ArgumentError: wrong number of arguments (given 0, expected 1)
+
+  b = Proc.new { |name| "Greetings #{name}!!" }
+  b.call('Mark') #=> "Greetings Mark!!"
+  b.call #=> "Greetings !!"
+  {% endhighlight %}
+
+  Now lets see how both handle the return statement when called inside a method.
+
+  {% highlight ruby %}
+  def lambda_returns
+    a = lambda { return }
+    a.call
+    puts 'Hello'
+  end
+
+  lambda_returns #=> "Hello"
+
+  def proc_returns
+    b = Proc.new { return }
+    b.call
+    puts 'Hello'
+  end
+
+  proc_returns #=> nil
+  # proc returns out of the method enclosing it.
+  {% endhighlight %}
+
+---
 * ### ***Can private methods be called outside class definition?***
 
   Normally it's not possible to call a private method outside it's class
