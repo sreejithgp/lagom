@@ -67,6 +67,7 @@ a package manager for the ruby programing language.
   There is always a block in as the last argument when you define a method in ruby.
 
   {% highlight ruby %}
+
   def hello
     puts 'world'
   end
@@ -91,7 +92,6 @@ a package manager for the ruby programing language.
   # world
   # there
   # => nil
-
   {% endhighlight %}
 
   Now the difference between procs and lambdas are on how they handle the
@@ -100,6 +100,7 @@ a package manager for the ruby programing language.
   Procs don't strict enforce the arguments you pass in.
 
   {% highlight ruby %}
+
   a = lambda { |name| "Greetings #{name}!!" }
   a.call('Mark') #=> "Greetings Mark!!"
   a.call #=> ArgumentError: wrong number of arguments (given 0, expected 1)
@@ -112,6 +113,7 @@ a package manager for the ruby programing language.
   Now lets see how both handle the return statement when called inside a method.
 
   {% highlight ruby %}
+
   def lambda_returns
     a = lambda { return }
     a.call
@@ -129,6 +131,7 @@ a package manager for the ruby programing language.
   proc_returns #=> nil
   # proc returns out of the method enclosing it.
   {% endhighlight %}
+  [More about blocks, procs and lambdas](https://medium.com/@AdamKing0126/ruby-whats-the-deal-with-procs-and-lambdas-165450cdf573)
 
 ---
 * ### ***Can private methods be called outside class definition?***
@@ -137,6 +140,7 @@ a package manager for the ruby programing language.
   definition, but this can be possible by using ruby's send method.
 
   {% highlight ruby %}
+
   class Hello
 
     private
@@ -157,12 +161,15 @@ a package manager for the ruby programing language.
 
   We can see that these methods are not available for a module.
   {% highlight ruby %}
+
   Class.new.methods - Module.new.methods #=> [:new, :allocate, :superclass]
   {% endhighlight %}
+
   Don't confuse `Module.new` here, as everything in ruby is an object. We are
   simply creating a module using this.
   This can be simply transformed as 
   {% highlight ruby %}
+
   class Hello
   end
 
@@ -183,6 +190,7 @@ a package manager for the ruby programing language.
 
   If you want to create them manually then
   {% highlight ruby %}
+
   class Hello
     # getter method
     def world
